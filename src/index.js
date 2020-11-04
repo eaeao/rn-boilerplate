@@ -4,7 +4,7 @@ import {useObserver} from 'mobx-react';
 import useStore from './hooks/useStore';
 
 const Index = () => {
-  const {counter} = useStore();
+  const {auth, counter} = useStore();
 
   const increase = () => {
     counter.increase();
@@ -14,16 +14,24 @@ const Index = () => {
     counter.decrease();
   };
 
+  const login = () => {
+    auth.login();
+  };
+
   return useObserver(() => (
     <>
       <SafeAreaView>
         <View style={styles.container}>
-          <Text>{counter.number}</Text>
+          <Text>count : {counter.number}</Text>
           <Pressable onPress={increase}>
             <Text>+</Text>
           </Pressable>
           <Pressable onPress={decrease}>
             <Text>-</Text>
+          </Pressable>
+          <Text style={{marginTop: 100}}>user : {auth.user}</Text>
+          <Pressable onPress={login}>
+            <Text>Login</Text>
           </Pressable>
         </View>
       </SafeAreaView>
