@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+export {default} from './storybook';
 import Index from './src/index';
 
-export default Index;
+// export default Index;
