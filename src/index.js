@@ -1,7 +1,19 @@
 import React from 'react';
-import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Pressable, SafeAreaView, Text} from 'react-native';
+import styled from 'styled-components/native';
 import {useObserver} from 'mobx-react';
 import useStore from './hooks/useStore';
+
+const Container = styled.View`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.Text`
+  font-size: 30px;
+`;
 
 const Index = () => {
   const {auth, counter} = useStore();
@@ -21,31 +33,22 @@ const Index = () => {
   return useObserver(() => (
     <>
       <SafeAreaView>
-        <View style={styles.container}>
-          <Text>count : {counter.number}</Text>
+        <Container>
+          <Title>count : {counter.number}</Title>
           <Pressable onPress={increase}>
             <Text>+</Text>
           </Pressable>
           <Pressable onPress={decrease}>
             <Text>-</Text>
           </Pressable>
-          <Text style={{marginTop: 100}}>user : {auth.user}</Text>
+          <Title style={{marginTop: 100}}>user : {auth.user}</Title>
           <Pressable onPress={login}>
             <Text>Login</Text>
           </Pressable>
-        </View>
+        </Container>
       </SafeAreaView>
     </>
   ));
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Index;
